@@ -7,9 +7,9 @@ SELECT *
 FROM savings_savingsaccount;
 
 -- Challenge: Knowing whether to what to classify as inactive account after is_regular_savings and is_fund
-WITH date_plan AS(
+WITH date_plan AS( -- show the last transaction date for these accounts
 		SELECT p.id, s.owner_id, type, MAX(transaction_date) AS last_transaction_date
-	FROM (
+	FROM ( -- Subquery to create the categories for savings and investments for active accounts
 		SELECT 
 			*,
 			CASE

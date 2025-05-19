@@ -22,7 +22,7 @@ tenure AS ( -- Using the final available transaction date as the most recent dat
 		timestampdiff(MONTH, u.date_joined, (SELECT MAX(transaction_date) FROM savings_savingsaccount)) AS 	tenure_months
 	FROM users_customuser u
     ),
-transactions AS (
+transactions AS ( -- Get the total number of transactions, as well as the average profit per transaction
 	SELECT owner_id, COUNT(*) AS total_transactions, AVG(0.001*confirmed_amount) AS avg_ppt
 	FROM savings_savingsaccount
 	GROUP BY owner_id
